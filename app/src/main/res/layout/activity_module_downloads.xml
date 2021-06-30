@@ -28,7 +28,7 @@
         >
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardOptionProspects"
+            android:id="@+id/cardOptDownloadProducts"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,6 +65,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardOptDownloadCategories"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"

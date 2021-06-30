@@ -8,13 +8,14 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NOMBRE = "massivehome.db";
 
     public static final String TABLE_PROSPECTOS = " t_prospectos ";
     public static final String TABLE_PRODUCTOS = " t_productos ";
     public static final String TABLE_CATEGORIAS = " t_categorias ";
     public static final String TABLE_MARCAS = " t_marcas ";
+    public static final String TABLE_GALLERY_PRODUCTS = " t_gallery_products ";
 
     public static final String CREATE = " CREATE TABLE IF NOT EXISTS ";
 
@@ -25,6 +26,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String C_upload_flag = " upload_flag INTEGER NOT NULL DEFAULT 0 ";
     public static final String C_category_id = " category_id INTEGER ";
     public static final String C_brand_id = " brand_id INTEGER ";
+    public static final String C_product_id = " product_id INTEGER ";
 
     // TEXT FIELDS
     public static final String C_name = " nombre TEXT NOT NULL ";
@@ -35,8 +37,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String C_email = " email TEXT NOT NULL ";
     public static final String C_comentarios = " comentarios TEXT NOT NULL ";
     public static final String C_descripcion = " descripcion TEXT NOT NULL ";
-    public static final String C_image_name = " C_image_name TEXT NOT NULL ";
+    public static final String C_image_name = " image_name TEXT NOT NULL ";
     public static final String C_created_at = " created_at TEXT ";
+    public static final String C_statusId = " statusId INTEGER ";
 
     // DOUBLE FIELDS
     public static final String C_precio = " precio double ";
@@ -55,10 +58,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE+TABLE_PRODUCTOS+"("+C_id_ni+coma+C_codigo+coma+C_image_name+coma+C_category_id+coma+C_brand_id+coma+C_name+coma+C_descripcion+coma+C_precio+coma+C_precio2+coma+C_precio3+")");
         db.execSQL(CREATE+TABLE_CATEGORIAS+"("+C_id_ni+coma+C_category_id+coma+C_name+")");
         db.execSQL(CREATE+TABLE_MARCAS+"("+C_id_ni+coma+C_name+")");
+        db.execSQL(CREATE+TABLE_GALLERY_PRODUCTS+"("+C_product_id+coma+C_image_name+")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        //db.execSQL(" ALTER TABLE "+TABLE_CATEGORIAS+" ADD "+C_statusId);
+        //db.execSQL(" DROP TABLE "+TABLE_PRODUCTOS);
+        onCreate(db);
     }
 }
